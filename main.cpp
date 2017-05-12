@@ -318,7 +318,7 @@ int main (void)
           break;
 
           case 5:
-
+            cout << "La práctica en cuestión no fue entregada." << endl;
           break;
 
           case 6:{
@@ -480,7 +480,7 @@ int main (void)
           break;
 
           case 8:
-
+              cout << "La práctica en cuestión no fue entregada." << endl;
           break;
 
           default:
