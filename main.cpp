@@ -7,6 +7,8 @@
 #include <iostream>
 #include "CifradoVernam/vernamalgorithm.hpp"
 #include "CifradoVigenere/vigenerealgorithm.hpp"
+#include "CifradoRC4/RC4.hpp"
+#include "CifradoA51/A5_1.hpp"
 #include <string>
 #include <bitset>
 #include <cstdio>
@@ -156,11 +158,161 @@ int main (void)
 
 	        break;
 
-          case 3:
+          case 3:{
+
+            system("clear");
+          	std::vector<unsigned char> semilla(2,0);
+          	semilla[0]=2;
+          	semilla[1]=5;
+
+          	std::vector<unsigned char> msg(2, 0);
+          	msg[0]=1;
+          	msg[1]=34;
+          	std::vector<unsigned char> msg_cifrado(2,0);
+          	std::vector<unsigned char> secuencia_cifrado;
+
+          	rc4 A(semilla);
+          	msg_cifrado = A.cifrar(msg);
+
+          	cout << "Práctica 3: Algoritmo de Cifrado RC4 - Seguridad en Sistemas Informáticos"<<endl;
+          	cout << "====================" << endl;
+
+          	cout << "El mensaje original es: ";
+          	for (int i=0;i<msg.size();i++)
+          	{
+          		if (i==msg.size()-1)
+          			cout << int(msg[i]);
+          		else
+          			cout << int(msg[i]) << ", ";
+          	}
+
+          	cout << endl << "La semilla es: ";
+          	for (int i=0;i<semilla.size();i++)
+          	{
+          		if (i==semilla.size()-1)
+          			cout << int(semilla[i]);
+          		else
+          			cout << int(semilla[i]) << ", ";
+          	}
+          	secuencia_cifrado=A.secuencia();
+
+          	cout << endl << "La clave de cifrado es: ";
+          	for (int i=0;i<secuencia_cifrado.size();i++)
+          	{
+          		if (i==secuencia_cifrado.size()-1)
+          			cout << int(secuencia_cifrado[i]);
+          		else
+          			cout << int(secuencia_cifrado[i]) << ", ";
+          	}
+
+          	cout << endl << "El mensaje cifrado es: ";
+          	for (int i=0;i<msg_cifrado.size();i++)
+          	{
+          		if (i==msg_cifrado.size()-1)
+          			cout << int(msg_cifrado[i]);
+          		else
+          			cout << int(msg_cifrado[i]) << ", ";
+          	}
+
+          	cout << endl << "====================" << endl;
+
+
+          	rc4 C(semilla);
+          	cout << "====================" << endl;
+          	cout << "MODIFICACIÓN SPRITZ" << endl;
+
+          	std::vector<unsigned char> msg_2(2, 0);
+          	msg_2[0]=1;
+          	msg_2[1]=34;
+
+          	std::vector<unsigned char> msg_cifrado_2(2,0);
+          	std::vector<unsigned char> secuencia_cifrado2;
+          	msg_cifrado_2 = C.cifrar_mod(msg_2);
+
+          	cout << "El mensaje original es: ";
+          	for (int i=0;i<msg_2.size();i++)
+          	{
+          		if (i==msg_2.size()-1)
+          			cout << int(msg_2[i]);
+          		else
+          			cout << int(msg_2[i]) << ", ";
+          	}
+
+          	cout << endl << "La semilla es: ";
+          	for (int i=0;i<semilla.size();i++)
+          	{
+          		if (i==semilla.size()-1)
+          			cout << int(semilla[i]);
+          		else
+          			cout << int(semilla[i]) << ", ";
+          	}
+
+          	secuencia_cifrado2=C.secuencia();
+
+          	cout << endl << "La clave de cifrado es: ";
+          	for (int i=0;i<secuencia_cifrado2.size();i++)
+          	{
+          		if (i==secuencia_cifrado2.size()-1)
+          			cout << int(secuencia_cifrado2[i]);
+          		else
+          			cout << int(secuencia_cifrado2[i]) << ", ";
+          	}
+
+          	cout << endl <<"El mensaje cifrado es: ";
+          	for (int i=0;i<msg_cifrado_2.size();i++){
+          		if (i==msg_cifrado_2.size()-1)
+          			cout << int(msg_cifrado_2[i]);
+          		else
+          			cout << int(msg_cifrado_2[i]) << ", ";
+          	}
+
+          	cout << endl << "====================" << endl;
+          }
 
           break;
 
-          case 4:
+          case 4:{
+
+            A5_1algoritmo A5_1;
+            int selection;
+            string message;
+            system("clear");
+
+            do{
+                cout<<"______________________________________________________"<<endl;
+                cout<<"Práctica 4 SEGURIDAD EN SISTEMAS INFORMÁTICOSI: A5/1"<<endl;
+                cout<<"______________________________________________________"<<endl;
+                cout<<"[1]. Encriptación aplicando el algoritmo A5/1"<<endl;
+                cout<<"[2]. Encriptación aplicando el algoritmo A5/1(con modificación)"<<endl;
+                cout<<"[0]. Finalizar el programa.                "<<endl;
+                cout<<"______________________________________________________"<<endl;
+                cout << endl;
+                cout << "OPCIÓN >> :";
+                cin >> selection;
+                getchar();
+
+                switch(selection) {
+
+                    case 1:
+                        system ("clear");
+                        cout<<"Introduzca el mensaje a encriptar: "<<endl;
+                        getline (cin,message);
+                        A5_1.A5_1encriptar(message);
+                        cout << endl << endl << endl;
+                        break;
+
+                    case 2:
+                        system ("clear");
+                        cout<<"Introduzca el mensaje a encriptar: "<<endl;
+                        getline (cin,message);
+                        A5_1.A5_1encriptar_mod(message);
+                        cout << endl << endl << endl;
+                        break;
+
+                }
+
+            }while(selection);
+          }
 
           break;
 
