@@ -9,6 +9,7 @@
 #include "CifradoVigenere/vigenerealgorithm.hpp"
 #include "CifradoRC4/RC4.hpp"
 #include "CifradoA51/A5_1.hpp"
+#include "CifradoDH/diffiehellman.hpp"
 #include <string>
 #include <bitset>
 #include <cstdio>
@@ -320,7 +321,68 @@ int main (void)
 
           break;
 
-          case 6:
+          case 6:{
+
+            DiffieHellman DH;
+            long selection, usuarios, alpha,p;
+            string message;
+            system("clear");
+
+            do{
+                cout<<" ___________________________________________ "<<endl;
+                cout<<"|      Práctica 6 SSI: DIFFIE-HELLMAN      |"<<endl;
+                cout<<" -------------------------------------------"<<endl;
+                cout<<"[1]. INTERCAMBIO DE CLAVES.(2 personas)     |"<<endl;
+                cout<<"[2]. INTERCAMBIO DE CLAVES.(3 personas)     |"<<endl;
+                cout<<"[3]. INTERCAMBIO DE CLAVES.(n personas)     |"<<endl;
+                cout<<"[0]. Finalizar el programa.                 |"<<endl;
+                cout<<"____________________________________________"<<endl;
+                cout << endl;
+                cout << "INTRODUZCA LA OPCIÓN DESEADA:";
+                cin >> selection;
+                getchar();
+
+                switch(selection) {
+
+                    case 1:
+                        usuarios = 2;
+                        cout << "Introduce un número primo p: ";   cin >> p;
+                        cout << "Introduce el valor alpha menor que p: "; cin >> alpha;
+
+                        system ("clear");
+                        DH.DiffieHellman_algorithm(p, alpha, usuarios);
+                        cout << endl << endl << endl;
+
+                        break;
+
+
+                    case 2:
+                        usuarios = 3;
+                        cout << "Introduce un número primo p: ";   cin >> p;
+                        cout << "Introduce el valor alpha menor que p: "; cin >> alpha;
+
+                        system ("clear");
+                        DH.DiffieHellman_algorithm_mod(p, alpha, usuarios);
+                        cout << endl << endl << endl;
+
+                    break;
+
+                    case 3:
+                        cout << "Introduzca el numero de usuarios: ";   cin >> usuarios;
+                        cout << "Introduce un número primo p: ";   cin >> p;
+                        cout << "Introduce el valor alpha menor que p: "; cin >> alpha;
+
+                        system ("clear");
+                        DH.DiffieHellman_algorithm_mod2(p, alpha, usuarios);
+                        cout << endl << endl << endl;
+
+                    break;
+
+
+                }
+
+            }while(selection);
+          }
 
           break;
 
