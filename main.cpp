@@ -471,9 +471,7 @@ int main (void)
 
                   cout <<"Comprobamos que " << (y * y) % N << "=" << (A * V) % N <<endl;
                 }
-
               }
-
             }
           }
 
