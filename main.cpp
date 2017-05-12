@@ -1,4 +1,4 @@
-//Algoritmos y estructuras de Datos Avanzados
+//"PRACTICA 10: SEGURIDAD EN SISTEMAS INFORMÁTICOS
 
 //Práctica 10: Practicas de seguridad formato menú
 //AUTOR: Darwin González Suárez
