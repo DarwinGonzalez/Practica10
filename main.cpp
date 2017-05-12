@@ -386,7 +386,96 @@ int main (void)
 
           break;
 
-          case 7:
+          case 7:{
+
+            system("clear");
+            int p,s,q,N,it,A,y,Ant;
+            int V;
+            cout <<"--------------------------------------------------------------------"<<endl;
+            cout <<" SEGURIDAD SISTEMAS INFORMATICOS"<<endl;
+            cout <<"--------------------------------------------------------------------"<<endl;
+            cout <<" Práctica 7: Algoritmo de Fiat-Shamir "<<endl;
+            cout <<"--------------------------------------------------------------------"<<endl;
+            cout<<"Introducir el valor p :";
+            cin >> p;
+            cout<<"Introducir el valor q :";
+            cin >> q;
+            cout<<"Introducir el valor s :";
+            cin >> s;
+
+            N=p * q;
+            V=(s * s) % N;
+            cout<<"Introducir el numero de iteraciones :";
+            cin >> it;
+
+            int x[it];
+            int e[it];
+
+            for(int i=1;i <= it;i++){
+
+              if(i==1){
+                cout<<"Introducir el valor x :";
+                cin >> x[i];
+
+                cout<<"Introducir el valor e :";
+                cin >> e[i];
+
+                A=(x[i] * x[i])% N;
+                Ant = (A) % N;
+
+                if(e[i] == 0)
+                {
+                  y = x[i] % N;
+                  cout << "A: " << Ant << endl;
+                  cout << "Y: " << y << endl;
+                  cout <<"Comprobamos que Y al cuadrado modulo N es: " << (A) % N <<endl;
+                  cout <<"Comprobamos que " << (y * y) % N  << "=" << (A) % N <<endl;
+                }
+
+                else {
+                  y = (x[i] * s) % N;
+                  Ant = (y * y) % N;
+                  cout << "A: " << Ant<<endl;
+                  cout << "Y: " << y<<endl;
+                  cout <<"Comprobamos que " << (y * y) % N << "=" << (A * V) % N <<endl;
+                }
+
+              }
+
+              else {
+
+                cout<<"Introducir el valor e :";
+                cin >> e[i];
+
+                A = (Ant * Ant) % N;
+                cout << "a: " << A <<endl;
+
+                if(e[i] == 0)
+                {
+                  y = Ant % N;
+                  Ant = (y * y) % N;
+
+                  cout << "A: " << Ant<<endl;
+                  cout << "Y: " << y<<endl;
+
+                  cout <<"Comprobamos que Y al cuadrado modilo N es: " << (A) % N <<endl;
+                  cout <<"Comprobamos que " << (y * y) % N  << "=" << (A) % N <<endl;
+                }
+
+                else {
+                  y = (Ant * s) % N;
+                  Ant = (y * y) % N;
+
+                  cout << "A: " << Ant<<endl;
+                  cout << "Y: " << y<<endl;
+
+                  cout <<"Comprobamos que " << (y * y) % N << "=" << (A * V) % N <<endl;
+                }
+
+              }
+
+            }
+          }
 
           break;
 
